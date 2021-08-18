@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JANKEN QUEST</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">  
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- header -->
+    <header>
+        <div class="site-width header">
+            <img src="img/title2.png" alt="タイトルロゴ画像" style="height: 320px">
+        </div>
+    </header>
+<!-- // header -->
+<!-- main -->
+    <main>
+        <div class="site-width fieldmap">
+            <img src="img/map.png" alt="背景マップ画像">
+
+            <!-- じゃんけんに一回勝ったら竜王２を表示 -->
+            <div class="ryuou2">
+                <img src="img/ryuou2.png" alt="竜王第二形態画像">
+            </div>
+
+            <div id="ryuou1" class="ryuou1">
+                <img src="img/ryuou1.png" alt="竜王第一形態画像">
+            </div>
+
+            <div class="btn-e"></div>
+            <div class="guu-e">
+                <img src="img/guu2.png" alt="敵グーの画像">
+            </div>
+            <div class="choki-e">
+                <img src="img/choki2.png" alt="敵チョキの画像">
+            </div>
+            <div class="paa-e">
+                <img src="img/paa2.png" alt="敵パーの画像">
+            </div>
+            
+            <button class="resetbtn">たたかう</button>
+            
+            <!-- メモらんはゲームの進み具合で表示を変える -->
+            <div class="memo-base dq-font">
+                <p>たたかうを　おして　げーむを　すたーと
+                    <br><br>りゅうおうと　じゃんけんで　しょうぶ！</p>
+            </div>
+            <div class="memo-draw dq-font">
+                <p>あいこ　です
+                    <br><br>もういちど　しょうぶ！</p>
+            </div>
+            <div class="memo-lose dq-font">
+                <p>あなたは　まけました
+                    <br><br>たたかうを　おして　もういちど　ちょうせん！</p>
+            </div>
+            <div class="memo-win1 dq-font">
+                <p>りゅうおうを　たおした！
+                    <br><br>りゅうおうが　しょうたいを　あらわした！！
+                    <br><br>もういちど　じゃんけんで　しょうぶ！</p>
+            </div>
+            <div class="memo-win2 dq-font">
+                <p>りゅうおうを　たおした！
+                    <br><br>そして　このくにに　へいわが　もどったのだ</p>
+            </div>
+            <!-- 上記のボタンとメモ欄は、
+                cssでpositionで左右にpxを指定して、無理矢理位置調整している。
+                後から必要性を感じて追加したものだが、
+                左側にflexboxでナビゲーションエリアを作った方が良かったかもしれない。
+            -->
+
+            <video autoplay muted class="endingmovie">
+                <source src="img/ending.mp4" type="video/mp4" />
+            </video>
+            <!-- 動画を埋め込んだ。
+                mutedをつけないと動画の再生が始まらない。結果、音声が出ない。
+                ググってみたが良い開放が見当たらなかったため今回はこれでOKとする。 -->
+        </div>
+    </main>
+<!-- // main -->
+<!-- play -->
+    <div class="site-width play">
+        <div class="yusha">
+            <img src="img/yusha.png" alt="勇者画像">
+        </div>
+        <!-- じゃんけんは乱数で -->
+        <ul class="btn-box">
+            <button id="guu" value="0" class="btn" onclick="rsp(0);">
+                <img src="img/guu.png" alt="グーの画像">
+            </button>
+            <button id="choki" value="1" class="btn" onclick="rsp(1);">
+                <img src="img/choki.png" alt="チョキの画像">
+            </button>
+            <button id="paa" value="2" class="btn" onclick="rsp(2);">
+                <img src="img/paa.png" alt="パーの画像">
+            </button>
+            <!-- 最初はaタグで作った。
+                css当てるところまでは問題なかった。
+                jsを当てたところでうまく動かなかったためbuttonタグに変えた。
+                結果、JSは機能するようになったが、画像のサイズが小さくなったためcssで微調整した。
+            -->
+        </ul>
+    </div>
+<!-- // play -->
+<!-- footer -->
+    <footer class="site-width">
+        <div class="footer site-width text-center">
+            <small class="copyrights">©︎1986 ENIX CO., LTD. All Rights Reserved.（嘘）</small>
+        </div>
+    </footer>
+<!-- // footer -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
+<!-- 全体を通して気づいた点と今後の課題
+    ・idとclassの使い分けどころがまだピンときていない。
+    今回は結局ほぼclassでcssともjsとも紐づけている。
+    何箇所にも当てるものはclass、ユニークに当てるものはidということだとすると、
+    せっかくclassを使っているのに各タグでそれぞれ定義してしまっており、
+    cssで共通処理できるところを無駄に何度も書いているということか。
+-->
